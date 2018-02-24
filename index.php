@@ -4,7 +4,7 @@
 <head>
 	<title>OneCoin</title>
 	<!-- <link rel="icon" href="./images/coin.gif" type="image/gif" sizes="50x50">  -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -20,7 +20,8 @@
 				<div>
 					<img id="header-bg" src="./images/header_background.gif">
 					<img id="logo" src="./images/logo2.png">
-					<a href="#" style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">LOGIN</a>
+					<?php include "./showUser.php"; ?>
+
 				</div>
 			</div>
 		</div> 

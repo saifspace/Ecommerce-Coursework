@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>OneCoin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:#171728">
+	
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md">
+				<div>
+					<img id="header-bg" src="./images/header_background.gif">
+					<img id="logo" src="./images/logo2.png">
+				</div>
+			</div>
+		</div> 
+	</div>
+
+	<nav style="background-color:#FEDF46;">
+		<div class="container-fluid" style=" "> 
+				<ul class="nav navbar-nav" style="">
+					<li class="nav-items"> <a class="nav-text" id="item-1" href="#">ATARI</a></li>
+					<li class="nav-items"> <a class="nav-text" id="item-2" href="#">PLAYSTATION</a></li>
+					<li class="nav-items"> <a class="nav-text" id="item-3" href="#">NINTENDO</a></li>
+					<li class="nav-items"> <a class="nav-text" id="item-4" href="#">SEARCH</a></li>
+				</ul>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-6" style=" background-color: white; height: 500px; border:solid; border-color: black">
+				<br><p>New Customer - Create Account:</p>
+				
+				<div>
+					<form action="./register.php" method="post">
+						<label>Email Address:</label><br><input type="text" name="email"><br>
+						<label>First Name:</label><br><input type="text" name="firstName"><br>
+						<label>Last Name:</label><br><input type="text" name="lastName"><br>
+						<label>Address:</label><br><input type="text" name="address"><br>
+						<label>Password:</label><br><input type="password" name="pass"><br><br>
+						<input type="submit" value="Register"/>
+					</form>
+				</div>
+
+
+				
+			</div>
+
+			<div class="col-md-6" style=" background-color: white; height: 500px; border:solid; border-color: black">
+				<br><p>Returning Customer:</p>
+				<form action="./login.php" method="post">
+					<label>Email Address:</label><br><input type="text" name="email"><br>
+					<label>Password:</label><br><input type="text" name="pass"><br><br>
+					<input type="submit" value="Login">
+				</form>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+
+
+
+</body>
+
+</html>
