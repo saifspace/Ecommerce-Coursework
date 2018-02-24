@@ -44,6 +44,9 @@
 #item-3:hover {
 	background-color: #d63620;
 }
+#item-4:hover {
+	background-color: orange;
+}
 
 .slide-images {
 	display: none;
