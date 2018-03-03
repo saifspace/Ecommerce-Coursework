@@ -47,7 +47,7 @@
 			<div class="col-md-2" style="background-color: orange; border: solid; border-color: purple; height: auto;">
 				
 			</div>
-			<div class="col-md-8" style="background-color: white; border: solid; border-color: navy; height: auto;">
+			<div class="col-md-8" style="background-color: white; border: solid; border-color: navy; height: 100vh;">
 				<?php show_atari_products(); ?>
 			</div>
 			
@@ -58,7 +58,7 @@
 	<div class="container-fluid">
 		
 		<div class="row">
-			<div class="col-md" style="background-color: black">
+			<div class="col-md" style="background-color: #1A1A2E">
 						<!-- <div class="footer"> -->
     	 					<!-- <p><b>Developer: </b>Mohammed Shaikh</p><br/> -->
   							<p style="text-align: center; position: relative; top:50%; color: white">© 2018 Copyright: <a href=""> OneCoin Inc. </a></p>
