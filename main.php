@@ -14,7 +14,7 @@ function db_connect() {
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	echo "Connected successfully";
+	// echo "Connected successfully";
 
 	return $connection;
 
@@ -46,6 +46,53 @@ function login($email, $pass) {
     }
 
 }
+
+function show_atari_products(){
+	$connection = db_connect();
+	$query = "SELECT * FROM products WHERE brand='atari'";
+	$results = mysqli_query($connection, $query);
+	echo "<table class='table table-responsive' style='border-spacing:20px; border-collapse: separate;'>";
+	echo "<tr>";
+	$iterator = 0;
+
+	while($row = mysqli_fetch_array($results)){
+		if($iterator == 3){
+			echo "</tr>";
+			echo "
+					<tr>
+					<td align='center'>
+						<img src='$row[imagePath]' width='100' height='100'>
+						<p>$row[name]</p>
+						<p>£$row[price]</p>
+						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
+					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div>
+					<form action='basket.php' method='post'> <input style='margin-top:5px;' class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
+					</td>
+			";
+			$iterator = 0;
+		} else {
+
+		echo " 
+				<td align='center'>
+					<img src='$row[imagePath]' width='100' height='100'>
+					<p>$row[name]</p>
+					<p>£$row[price]</p>
+					<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
+					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div> 
+					
+					<form action='basket.php' method='post'> <input style='margin-top:5px;'  class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
+				</td>
+			  
+		";
+	}
+
+		$iterator++;
+	}
+	echo "</tr>";
+	echo "</table>";
+
+}
+
 
 
 function show_user(){

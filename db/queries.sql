@@ -15,3 +15,6 @@ CREATE TABLE accounts (
     lastName VARCHAR(100) NOT NULL, 
     address TEXT NOT NULL 
 );
+
+INSERT INTO products (name, imagePath, description, brand, price)
+VALUES ('Atari Pong', './images/atari/atari6.jpg', 'The orignal ping pong video game console.', 'atari', 10.00);
