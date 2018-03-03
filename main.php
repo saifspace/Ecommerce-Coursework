@@ -47,6 +47,74 @@ function login($email, $pass) {
 
 }
 
+
+function add_to_basket($id) {
+	session_start();
+    if(isset($_SESSION['basket'])){ 
+        if (array_key_exists($id, $_SESSION['basket'])){ 
+            $_SESSION['basket'][$id]++; 
+        } else{
+            $_SESSION['basket'][$id] = 1; 
+        }
+    }else{
+        $_SESSION['basket'] = array($id => 1);                                                                
+    }
+    header("Location: basket.php");
+
+}
+
+function display_basket() {
+	    if(!isset($_SESSION['basket'])){
+        
+        echo"<p>Your baskter is empty. To order items please go to the products page.</p>";
+        return;
+        
+        
+    }
+    
+    
+    echo "<table class='table table-responsive' style='border-spacing:20px; border-collapse: separate;' ><tr>
+         <th>Product Name</th>
+         <th>Quantity</th>
+         <th>Price</th>
+         <th>Subtotal</th>
+         </tr>";
+    
+    $conn = db_connect();
+    $total = 0;
+    
+    foreach($_SESSION['basket'] as $key=>$value){ 
+       
+        if($value > 0){
+        $query = "SELECT name, price FROM products WHERE id=$key";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        echo "<tr>
+             <td>$row[name]</td>
+             <td>$value</td>
+             <td>£$row[price]</td>
+             <td>£".number_format($value*$row['price'], 2, '.', '')."</td>
+             </tr>";
+        
+        $total = $total + $value*$row['price'];
+        }
+    }
+    echo "</table>";
+    mysqli_close($conn);
+    
+    
+    echo "<br/><table class='table table-responsive'><tr>
+         <th>Total</th>
+         <th>Order</th>
+         </tr>
+         <tr>
+         <td>&pound".number_format($total, 2, '.', '')."</td>
+         <td><form action='order.php' method='post'><input type ='submit' value='Order'/></form></td>
+         </tr>
+         </table>";
+}
+
+
 function show_atari_products(){
 	$connection = db_connect();
 	$query = "SELECT * FROM products WHERE brand='atari'";
@@ -66,7 +134,7 @@ function show_atari_products(){
 						<p>£$row[price]</p>
 						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
 					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div>
-					<form action='basket.php' method='post'> <input style='margin-top:5px;' class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
+					<form action='addToBasket.php' method='post'> <input style='margin-top:5px;' class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
 					</td>
 			";
 			$iterator = 0;
@@ -80,7 +148,7 @@ function show_atari_products(){
 					<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
 					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div> 
 					
-					<form action='basket.php' method='post'> <input style='margin-top:5px;'  class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
+					<form action='addToBasket.php' method='post'> <input style='margin-top:5px;'  class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
 				</td>
 			  
 		";
@@ -90,6 +158,7 @@ function show_atari_products(){
 	}
 	echo "</tr>";
 	echo "</table>";
+	mysqli_close($connection); 
 
 }
 

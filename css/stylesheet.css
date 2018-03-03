@@ -37,6 +37,16 @@
 	color: inherit;
 }
 
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #FEDF46;
+   color: black;
+   text-align: center;
+}
+
 
 #header-bg {
 	width: 100%;

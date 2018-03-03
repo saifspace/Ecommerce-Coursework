@@ -30,13 +30,13 @@
 	
 	
 	<nav style="background-color:#FEDF46;">
-		<div class="container-fluid"> 
+		<div class="container-fluid" > 
 				<ul class="nav navbar-nav" style="">
 					<li class="nav-items"> <a class="nav-text" id="item-1" href="atari.php">ATARI</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-2" href="#">PLAYSTATION</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-3" href="#">NINTENDO</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-4" href="#">SEARCH</a></li>
-					<li class="nav-items"> <a class="nav-text" id="item-4" href="basket.php">BASKET</a></li>
+					<li class="nav-items"> <a class="nav-text" id="item-4" href="#">BASKET</a></li>
 				</ul>
 		</div>
 	</nav>
@@ -44,24 +44,23 @@
 
  	<div class="container-fluid" style="position: relative;">
 		<div class="row">
-			<div class="col-md-2" style="background-color: orange; border: solid; border-color: purple; height: auto;">
-				
-			</div>
-			<div class="col-md-8" style="background-color: white; border: solid; border-color: navy; height: auto;">
-				<?php show_atari_products(); ?>
+			<div class="col-md no-float" style="background-color: white; border: solid; border-color: navy; height: 100vh;">
+				<div style="position: absolute; left:5%;">
+					<?php display_basket(); ?>
+				</div>
 			</div>
 			
 		</div>
 
 		
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid" style="position: relative; width: 100%; bottom: 0">
 		
 		<div class="row">
 			<div class="col-md" style="background-color: black">
 						<!-- <div class="footer"> -->
     	 					<!-- <p><b>Developer: </b>Mohammed Shaikh</p><br/> -->
-  							<p style="text-align: center; position: relative; top:50%; color: white">© 2018 Copyright: <a href=""> OneCoin Inc. </a></p>
+  							<p style="text-align: center; position: relative; top:50%; color: white">© 2018 Copyright: <a href="index.php"> OneCoin Inc. </a></p>
 						<!-- </div>  -->
 			</div>
 		</div>
