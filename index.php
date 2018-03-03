@@ -19,7 +19,7 @@
 			<div class="col-md">
 				<div>
 					<img id="header-bg" src="./images/header_background.gif">
-					<img id="logo" src="./images/logo2.png">
+					<a href="index.php"><img id="logo" src="./images/logo2.png"></a>
 					<?php include "./showUser.php"; ?>
 
 				</div>
@@ -30,7 +30,7 @@
 	<nav style="background-color:#FEDF46;">
 		<div class="container-fluid" style=" "> 
 				<ul class="nav navbar-nav" style="">
-					<li class="nav-items"> <a class="nav-text" id="item-1" href="#">ATARI</a></li>
+					<li class="nav-items"> <a class="nav-text" id="item-1" href="atari.php">ATARI</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-2" href="#">PLAYSTATION</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-3" href="#">NINTENDO</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-4" href="#">SEARCH</a></li>

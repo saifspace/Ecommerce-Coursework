@@ -1,3 +1,21 @@
+.modal {
+    text-align: center;
+}
+
+.modal::before {
+    content: "";      
+    display: inline-block;
+    height: 100%;    
+    margin-right: -4px;
+    vertical-align: middle;
+}
+
+.modal-dialog { 
+    display: inline-block;  
+    text-align: left;   
+    vertical-align: middle;
+}
+
 .col-md {
 	height: 100px;
 }
@@ -68,24 +86,3 @@
   from {opacity: .4}
   to {opacity: 1}
 }
-
-.modal {
-    text-align: center;
-}
-
-.modal::before {
-    content: "";      
-    display: inline-block;
-    height: 100%;    
-    margin-right: -4px;
-    vertical-align: middle;
-}
-
-.modal-dialog { 
-    display: inline-block;  
-    text-align: left;   
-    vertical-align: middle;
-}
-
-
-
