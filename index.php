@@ -41,22 +41,31 @@
 
 	<div class="container">
 		<div class="row" style="" >
-			<div class="col-md">
+			<div class="col-md-1">
+				
+			</div>
+
+			<div class="col-md-10">
 				<div class="slideshow-container" >
 					<div class="slide-images effect" style="display: block">
-						<img src="./images/products/StreetFighterSlideShow.jpg" style="height:350px; width:100%; object-fit: cover;">
+						<img src="./images/products/StreetFighterSlideShow.jpg" style="height:250px; width:100%; object-fit: cover;">
 					</div>
 					<div class="slide-images effect">
-						<img src="./images/products/oldschool.jpg" style=" height:350px; width:100%; object-fit: cover;">
+						<img src="./images/products/oldschool.jpg" style=" height:250px; width:100%; object-fit: cover;">
 					</div>
 					<div class="slide-images effect">
-						<img src="./images/products/controllers2.jpg" style=" height:350px; width:100%; object-fit: cover;">
+						<img src="./images/products/controllers2.jpg" style=" height:250px; width:100%; object-fit: cover;">
 					</div>
 					<div class="slide-images effect">
-						<img src="./images/products/controllers.jpg" style=" height:350px; width:100%; object-fit: cover;">
+						<img src="./images/products/controllers.jpg" style=" height:250px; width:100%; object-fit: cover;">
 					</div>
 				</div>
 			</div>
+
+			<div class="col-md-1">
+				
+			</div>
+
 		</div>
 	</div>
 
