@@ -69,6 +69,19 @@
 		</div>
 	</div>
 
+	<div class="container-fluid" style="position: absolute; width: 100%; bottom: 0;">
+		
+		<div class="row">
+			<div class="col-md" style="background-color: #1A1A2E">
+						<!-- <div class="footer"> -->
+    	 					<!-- <p><b>Developer: </b>Mohammed Shaikh</p><br/> -->
+  							<p style="text-align: center; position: relative; top:50%; color: white">© 2018 Copyright: <a href="index.php"> OneCoin Inc. </a></p>
+						<!-- </div>  -->
+			</div>
+		</div>
+
+	</div> 
+
 	<script>
 		setInterval(function() {
   			$('.slideshow-container > div:first')
