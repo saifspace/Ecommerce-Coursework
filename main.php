@@ -63,14 +63,32 @@ function add_to_basket($id) {
 
 }
 
+function remove_from_basket($id) {
+	session_start();
+	if(isset($_SESSION['basket'])) {
+
+		if(array_key_exists($id, $_SESSION['basket'])){
+			$_SESSION['basket'][$id]--;
+		}
+
+		if($_SESSION['basket'][$id] == 0){
+			unset($_SESSION['basket'][$id]);
+		}
+
+	}
+	header("Location: basket.html");
+}
+
 function display_basket() {
 	    if(!isset($_SESSION['basket'])){
         
         echo'<h1><span class="glyphicon glyphicon-shopping-cart"></span> Your basket is empty</h1>';
         return;
-        
-        
-    }
+    	}
+  		if(count($_SESSION['basket']) == 0) {
+  			echo'<h1><span class="glyphicon glyphicon-shopping-cart"></span> Your basket is empty</h1>' ;
+        	return;
+  		}
     
     
     echo "<table class='table table-responsive' style='border-spacing:20px; border-collapse: separate;' ><tr>
@@ -94,6 +112,10 @@ function display_basket() {
              <td>$value</td>
              <td>£$row[price]</td>
              <td>£".number_format($value*$row['price'], 2, '.', '')."</td>
+             <td> <form action='removeFromBasket.php' method='post'>
+             		  <input type='submit' value='Remove' name='$key'> 
+             	  </form> 
+             </td>
              </tr>";
         
         $total = $total + $value*$row['price'];
