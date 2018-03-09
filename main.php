@@ -195,7 +195,7 @@ function show_user(){
 	if(isset($_SESSION["user"])){
 		echo '<p style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">' . $user .'</p>'; 
 	}else{
-		echo '<a href="./account.html" style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">LOGIN</a>';
+		echo '<a href="./login.html" style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">LOGIN</a>';
 	}
 }
 
