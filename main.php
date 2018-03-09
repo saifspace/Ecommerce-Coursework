@@ -66,7 +66,7 @@ function add_to_basket($id) {
 function display_basket() {
 	    if(!isset($_SESSION['basket'])){
         
-        echo"<p>Your baskter is empty. To order items please go to the products page.</p>";
+        echo'<h1><span class="glyphicon glyphicon-shopping-cart"></span> Your basket is empty</h1>';
         return;
         
         
