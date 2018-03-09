@@ -204,7 +204,45 @@ function update_customer_details($email, $pass, $firstName, $lastName, $address)
 
 }
 
+function show_order_history() {
+	session_start();
+	$user = $_SESSION['user'];
 
+	if(isset($_SESSION['user'])) {
+		$connection = db_connect();
+		$query = "SELECT id FROM orders WHERE email='$user'";
+		$results = mysqli_query($connection, $query);
+
+		if(!is_null($results)){
+		echo "<table>
+			 <tr>
+			 <th>Name</th>
+			 <th>Image</th>
+			 <th>Quantity</th>
+			 <th>Price</th>
+			 </tr>
+			 ";
+		while($row = mysqli_fetch_array($results)){
+			$query = "SELECT orderItems.quantity, products.id, products.name, products.imagePath, products.price
+			FROM orderItems
+			INNER JOIN products on products.id = orderItems.product_id
+			WHERE orderItems.order_id = $row[id]
+			";
+			$results = mysqli_query($connection, $query);
+			while($row = mysqli_fetch_array($results)){
+				echo "<tr>
+				<td>$row[name]</td>
+				<td>placeholder</td>
+				<td>$row[quantity]</td>
+				<td>£$row[price]</td>
+				</tr>
+				";
+			}
+		}
+		echo "</table>";
+	}
+	}
+}
 
 function show_user(){
 	session_start();
