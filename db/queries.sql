@@ -18,3 +18,7 @@ CREATE TABLE accounts (
 
 INSERT INTO products (name, imagePath, description, brand, price)
 VALUES ('Atari Pong', './images/atari/atari6.jpg', 'The orignal ping pong video game console.', 'atari', 10.00);
+
+UPDATE accounts
+SET email=email, pass=pass, firstName=firstName, lastName=lastName, address=address
+WHERE email=email;

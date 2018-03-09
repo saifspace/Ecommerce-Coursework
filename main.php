@@ -37,12 +37,12 @@ function login($email, $pass) {
         session_start();
         $_SESSION["user"] = $email;
         echo $_SESSION["user"];
-        header("Location: index.php");
+        header("Location: account.html");
     }else{
         $msg = "Your password was not recognised - try again!" ; 
         echo "<script type ='text/javascript'> 
             alert('$msg');
-            window.location = 'account.html'; </script>"; 
+            window.location = 'login.html'; </script>"; 
     }
 
 }
@@ -187,6 +187,23 @@ function show_atari_products(){
 
 }
 
+function update_customer_details($email, $pass, $firstName, $lastName, $address) {
+	session_start();
+	$connection = db_connect();
+	$query = "UPDATE accounts SET email='$email', pass='$pass', firstName='$firstName', lastName='$lastName', address='$address' 
+	WHERE email='$email'";
+	if(mysqli_query($connection, $query) == TRUE){
+		mysqli_close($connection);
+		$_SESSION['accountUpdated'] = "success";	
+	} else {
+		$_SESSION['accountUpdated'] = "unsuccessful";	
+	}
+	
+
+	header("Location: account.html");
+
+}
+
 
 
 function show_user(){
@@ -198,5 +215,48 @@ function show_user(){
 		echo '<a href="./login.html" style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">LOGIN</a>';
 	}
 }
+
+function show_user_details(){
+	session_start();
+	$user = $_SESSION["user"];
+	if(isset($_SESSION["user"])){
+		$connection = db_connect();
+		$query = "SELECT * FROM accounts WHERE email = '$user' ";
+		$result = mysqli_query($connection, $query);
+		$row = mysqli_fetch_array($result);
+		$content = "
+			<h1> Your Details: </h1>
+			<form action='./updateCustomerDetails.php' method='post'>
+				<label style='display:none;'>Email:</label><input style='display:none;' type='text' name='email' value='$row[email]'>
+				<label>First Name:</label><br><input type='text' name='firstName' value='$row[firstName]'><br>
+				<label>Last Name:</label><br><input type='text' name='lastName' value='$row[lastName]'><br>
+				<label>Address:</label><br><input type='text' name='address' value='$row[address]'><br>
+				<label>Password:</label><br><input type='text' name='pass' value='$row[pass]'><br><br>
+				<input type='submit' value='Save Changes'/>
+			 </form>
+		";
+
+		if(!isset($_SESSION['accountUpdated'])) {
+			echo $content;
+		} 
+		else {
+			if($_SESSION['accountUpdated'] == "success"){
+				echo '<h4 class="text-success"> Account Updated Successfully</h4>' . $content ;
+			}else {
+				echo $content . '<h4 class="text-danger"> Something Went Wrong</h4>';
+			}
+
+		}
+
+		mysqli_close($connection);
+		unset($_SESSION['accountUpdated']);
+
+
+	}
+	else {
+		echo "<p>NOT LOGGED-IN</p>"; 
+	}
+}
+
 
 ?>
