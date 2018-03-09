@@ -36,7 +36,7 @@
 					<li class="nav-items"> <a class="nav-text" id="item-2" href="#">PLAYSTATION</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-3" href="#">NINTENDO</a></li>
 					<li class="nav-items"> <a class="nav-text" id="item-4" href="#">SEARCH</a></li>
-					<li class="nav-items"> <a class="nav-text" id="item-4" href="basket.php">BASKET</a></li>
+					<li class="nav-items"> <a class="nav-text" id="item-4" href="basket.html">BASKET</a></li>
 				</ul>
 		</div>
 	</nav>
