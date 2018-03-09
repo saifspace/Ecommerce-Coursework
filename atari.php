@@ -66,7 +66,16 @@
 			</div>
 		</div>
 
-	</div>           
+	</div>
+
+	<script>
+		function add(id) {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "addToBasket.php", true);
+			xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhttp.send("id=" +id);
+		}
+	</script>         
 
 </body>
 

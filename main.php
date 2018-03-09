@@ -59,7 +59,7 @@ function add_to_basket($id) {
     }else{
         $_SESSION['basket'] = array($id => 1);                                                                
     }
-    header("Location: basket.php");
+    //header("Location: basket.php");
 
 }
 
@@ -134,7 +134,9 @@ function show_atari_products(){
 						<p>£$row[price]</p>
 						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
 					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div>
-					<form action='addToBasket.php' method='post'> <input style='margin-top:5px;' class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
+					<form> 
+					<input style='margin-top:5px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
+					</form>
 					</td>
 			";
 			$iterator = 0;
@@ -147,8 +149,9 @@ function show_atari_products(){
 					<p>£$row[price]</p>
 					<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
 					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div> 
-					
-					<form action='addToBasket.php' method='post'> <input style='margin-top:5px;'  class='btn btn-primary btn-sm' type='submit' value='Buy' name='$row[id]'/> </form>
+					<form> 
+					<input style='margin-top:5px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
+					</form>
 				</td>
 			  
 		";

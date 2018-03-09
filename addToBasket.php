@@ -1,7 +1,7 @@
 <?php  
 
 	include "./main.php";
-	add_to_basket(key($_POST));
+	add_to_basket($_POST['id']);
 
 
 ?>
