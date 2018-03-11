@@ -31,6 +31,13 @@ CREATE TABLE orderItems (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    productName VARCHAR(255) NOT NULL,
+    comment TEXT NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
 INSERT INTO products (name, imagePath, description, brand, price)
 VALUES ('Atari Pong', './images/atari/atari6.jpg', 'The orignal ping pong video game console.', 'atari', 10.00);
 

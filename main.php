@@ -214,18 +214,20 @@ function show_order_history() {
 		$results = mysqli_query($connection, $query);
 
 		if(!is_null($results)){
-		echo "<table>
+		echo "<table class='table' style=''>
 			 <tr>
 			 <th>Name</th>
 			 <th>Image</th>
 			 <th>Quantity</th>
 			 <th>Price</th>
+			 <th>Review Status</th>
 			 </tr>
 			 ";
 		while($row = mysqli_fetch_array($results)){
-			$query = "SELECT orderItems.quantity, products.id, products.name, products.imagePath, products.price
+			$query = "
+			SELECT orderItems.quantity, orderItems.id, products.name, products.imagePath, products.price, orderItems.review, orders.email
 			FROM orderItems
-			INNER JOIN products on products.id = orderItems.product_id
+			INNER JOIN products on products.id = orderItems.product_id INNER JOIN orders on orderItems.order_id = orders.id
 			WHERE orderItems.order_id = $row[id]
 			";
 			$results = mysqli_query($connection, $query);
@@ -234,8 +236,30 @@ function show_order_history() {
 				<td>$row[name]</td>
 				<td>placeholder</td>
 				<td>$row[quantity]</td>
-				<td>£$row[price]</td>
-				</tr>
+				<td>£$row[price]</td>";
+				if($row[review] == 0){
+					echo "<td>
+						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Add Review</button>
+						<div class='modal fade' id='$row[id]' role='dialog'>  
+						<div class='modal-dialog'> 
+						<div class='modal-content'> 
+						<div class='modal-body'> 
+						<p>Review for $row[name]:</p>
+						<form action='./addReview.php' method='post'>
+						<input style='height:100px; width:300px;' type='text' name='comment'><br><br>
+						<input type='hidden' name='id' value='$row[id]'/>
+						<input type='hidden' name='email' value='$row[email]'/>
+						<input type='hidden' name='name' value='$row[name]'/>
+						<button type='submit' value='Submit'>Submit Review</button>
+					</form>
+						</div> 
+						</div> </div> </div> 
+					</td>";
+				}else {
+					echo "<td>Reviewed</td>";
+				}
+
+				echo "</tr>
 				";
 			}
 		}
@@ -296,6 +320,20 @@ function show_user_details(){
 	else {
 		echo "<p>NOT LOGGED-IN</p>"; 
 	}
+}
+
+function add_review($id, $productName, $comment, $userEmail){
+	$connection = db_connect();
+	$query = "INSERT INTO `reviews` (productName, comment, email)
+				VALUES ('$productName', '$comment', '$userEmail')";
+	$result = mysqli_query($connection, $query);
+
+	$query = "UPDATE `orderItems` SET review=1 WHERE id=$id";
+	$result = mysqli_query($connection, $query);
+
+	mysqli_close($connection);
+
+	header("Location: account.html");
 }
 
 
