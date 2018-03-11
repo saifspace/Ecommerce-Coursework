@@ -157,10 +157,35 @@ function show_atari_products(){
 						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
 					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div>
 					<form> 
-					<input style='margin-top:5px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
-					</form>
-					</td>
-			";
+					<input style='margin-top:5px; width:80px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
+					</form>";
+
+					$reviewQuery = "SELECT * FROM reviews WHERE productName='$row[name]'";
+					$reviewResults = mysqli_query($connection, $reviewQuery);
+					if(mysqli_num_rows($reviewResults) > 0){
+						$id = "review" . $row[id];
+						echo "
+						<button style='margin-top:5px; width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$id'>Reviews</button>
+						<div class='modal fade' id='$id' role='dialog'>
+						<div class='modal-dialog'> 
+						<div class='modal-content'>
+						<div class='modal-body'>
+							<table class='table table-responsive'>
+						";
+						while($row = mysqli_fetch_array($reviewResults)){
+							echo "<tr> <td>
+								<p>$row[comment]</p>
+								<h6>Review by: $row[email]<h6>
+								</td> </tr>
+
+							";
+							echo " </table> </div> </div> </div> </div>";
+
+						}
+					}
+
+			echo "</td>";
+			
 			$iterator = 0;
 		} else {
 
@@ -169,14 +194,39 @@ function show_atari_products(){
 					<img src='$row[imagePath]' width='100' height='100'>
 					<p>$row[name]</p>
 					<p>£$row[price]</p>
-					<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
+					<button style='width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
 					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div> 
 					<form> 
-					<input style='margin-top:5px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
-					</form>
-				</td>
+					<input style='margin-top:5px; width:80px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
+					</form>";
+
+					$reviewQuery = "SELECT * FROM reviews WHERE productName='$row[name]'";
+					$reviewResults = mysqli_query($connection, $reviewQuery);
+
+					if(mysqli_num_rows($reviewResults) > 0){
+						$id = "review" . $row[id];
+						echo "
+						<button style='margin-top:5px; width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$id'>Reviews</button>
+						<div class='modal fade' id='$id' role='dialog'>
+						<div class='modal-dialog'> 
+						<div class='modal-content'> 
+						<div class='modal-body'>
+							<table class='table table-responsive'>
+						";
+						while($row = mysqli_fetch_array($reviewResults)){
+							echo "<tr> <td>
+									<p>$row[comment]</p>
+									<h6>Review by: $row[email]<h6>
+							   </td> </tr>";
+						}
+						echo " </table> </div> </div> </div> </div>";
+
+					}
+
+
+		echo "</td>";
 			  
-		";
+		
 	}
 
 		$iterator++;
