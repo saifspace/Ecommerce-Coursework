@@ -43,13 +43,18 @@
 	<div class="container-fluid">
 
 		<div class="row">
+			<div class="col-md-4" style=""></div>
 			<div class="col-md-4" style="border-style: solid; border-color: navy; background-color: white;">
 				<?php show_user_details(); ?>
 				<br>
 			</div>
+			<div class="col-md-4" style="border-style: solid; border-color: navy; background-color: yellow;">
+				<button style="width: 100%; background-color: yellow">LOGOUT</button>
+			</div>
 		</div>
-		<div class="row" style="overflow-y:scroll; height:400px;">
-			<div class="col-md-4" style="border-style: solid; border-color: navy; background-color: white;">
+		<div class="row" style="">
+			<div class="col-md-4" style=""></div>
+			<div class="col-md-4" style="border-style: solid; border-color: navy; background-color: white; overflow-y:scroll; height:260px;">
 				<h1>Order History:</h1>
 				<?php show_order_history(); ?>
 				<br>
@@ -57,6 +62,10 @@
 		</div>
 	</div>
 
+	<footer style="background-color: #1A1A2E;height: 100px">
+		<p style="text-align: center; position: relative; top:40%; color: white"><b>Developer: </b>Mohammed Shaikh</p>
+		<p style="text-align: center; position: relative; top:40%; color: white">© 2018 Copyright:
+				<a href="index.html">OneCoin</a></p>
+	</footer>
 </body>
-
 </html>
