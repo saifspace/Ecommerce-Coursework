@@ -268,10 +268,22 @@ function update_customer_details($email, $pass, $firstName, $lastName, $address)
 		$_SESSION['accountUpdated'] = "unsuccessful";	
 	}
 	
+	mysqli_close($connection);
 
 	header("Location: account.html");
 
 }
+
+function update_item_details($name, $imagePath, $description, $brand, $price){
+	$connection = db_connect();
+	$query = "UPDATE products SET imagePath='$imagePath', description='$description', brand='$brand', 
+		price='$price' WHERE name='$name'";
+	$results = mysqli_query($connection, $query);
+	mysqli_close($connection);
+	header("Location: admin.html");
+
+}
+
 
 function show_order_history() {
 	session_start();
@@ -408,6 +420,41 @@ function add_review($id, $productName, $comment, $userEmail){
 	mysqli_close($connection);
 
 	header("Location: account.html");
+}
+
+
+function drop_down_items(){
+	$connection = db_connect();
+	$query = "SELECT * FROM products";
+	$results = mysqli_query($connection, $query);
+
+	echo '<select id="itemSelect" onChange="getItem()">';
+	echo "<option value='chooseItem'>Choose Item</option>";
+	while($row = mysqli_fetch_array($results)){
+		echo "<option value='$row[name]'>$row[name]</option>";
+	}
+
+	echo "</select>";
+	mysqli_close($connection);
+
+}
+
+function get_item_info($name){
+	$connection = db_connect();
+	$query = "SELECT * FROM products WHERE name='$name'";
+	$result = mysqli_query($connection, $query);
+	$row = mysqli_fetch_array($result);
+
+	$infoObj->name = $row[name];
+	$infoObj->imagePath = $row[imagePath];
+	$infoObj->description = $row[description];
+	$infoObj->brand = $row[brand];
+	$infoObj->price = $row[price];
+
+	$infoJSON = json_encode($infoObj);
+	echo $infoJSON;
+	mysqli_close($connection);
+
 }
 
 
