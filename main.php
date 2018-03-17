@@ -491,5 +491,24 @@ function add_item($name, $imagePath, $description, $brand, $price){
 	header("Location: admin.html");
 }
 
+function admin_logout(){
+	session_start();
+
+	if(isset($_SESSION['admin'])){
+		unset($_SESSION['admin']);	
+	}
+
+	header("Location: index.html");
+}
+
+function user_logout(){
+	session_start();
+
+	if(isset($_SESSION['user'])){
+		unset($_SESSION['user']);	
+	}
+
+	header("Location: index.html");
+}
 
 ?>
