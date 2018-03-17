@@ -16,6 +16,11 @@ CREATE TABLE accounts (
     address TEXT NOT NULL 
 );
 
+CREATE TABLE admins (
+    email VARCHAR(255) PRIMARY KEY,
+    pass VARCHAR(50)  
+);
+
 CREATE TABLE orders (
 	id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL,

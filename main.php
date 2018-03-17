@@ -39,7 +39,26 @@ function login($email, $pass) {
         echo $_SESSION["user"];
         header("Location: account.html");
     }else{
-        $msg = "Your password was not recognised - try again!" ; 
+        $msg = "Your email/password was not recognised - try again!" ; 
+        echo "<script type ='text/javascript'> 
+            alert('$msg');
+            window.location = 'login.html'; </script>"; 
+    }
+
+}
+
+function admin_login($email, $pass){
+	$connection = db_connect();
+	$query = "SELECT * FROM admins WHERE email = '$email' AND pass = '$pass'"; 
+	$result = mysqli_query($connection, $query);
+
+	if(mysqli_num_rows($result) == 1){
+        session_start();
+        $_SESSION["admin"] = $email;
+        echo $_SESSION["admin"];
+        header("Location: admin.html");
+    }else{
+        $msg = "Your email/password was not recognised - try again!" ; 
         echo "<script type ='text/javascript'> 
             alert('$msg');
             window.location = 'login.html'; </script>"; 
@@ -321,10 +340,15 @@ function show_order_history() {
 function show_user(){
 	session_start();
 	$user = $_SESSION["user"];
+	$admin = $_SESSION["admin"];
 	if(isset($_SESSION["user"])){
 		echo '<a href="./account.html" style="position: absolute; top: 115px; right: 20px; font-weight: bold; font-size:12pt;>
 		<p style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">' 
 		. $user .'</p> </a>'; 
+	}elseif(isset($_SESSION["admin"])){
+		echo '<a href="./admin.html" style="position: absolute; top: 115px; right: 20px; font-weight: bold; font-size:12pt;>
+		<p style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">' 
+		. $admin .'</p> </a>'; 
 	}else{
 		echo '<a href="./login.html" style="position: absolute; top: 115px; right: 20px; color: inherit; font-weight: bold; font-size:12pt;">LOGIN</a>';
 	}
