@@ -58,18 +58,61 @@
 			</div>
 
 			<div class="col-md-6" style=" background-color: white; height: 500px; border:solid; border-color: black">
+				<div class='row'>
+					
+					<a id="customer" href="#" onclick="showCustForm()">
+						<div id="custCol" class="col-md-6" style="border:solid; border-color: black; background-color: grey">
+							<p style="text-align: center; color: black">Customer</p>
+						</div>
+					</a>
+
+					<a id="admin" href="#" onclick="showAdminForm()">
+						<div id="adminCol" class="col-md-6" style="border:solid; border-color: black;">
+							<p style="text-align: center; color: black">Admin</p>
+						</div>
+					</a>
+
+				</div>
+
+				<div id="customerForm" ">
 				<br><p>Returning Customer:</p>
 				<form action="./login.php" method="post">
 					<label>Email Address:</label><br><input type="text" name="email"><br>
 					<label>Password:</label><br><input type="text" name="pass"><br><br>
 					<input type="submit" value="Login">
 				</form>
+				</div>
+
+				<div id="adminForm" style="display: none" >
+					<br><p>Admin Login:</p>
+					<form action="./login.php" method="post">
+						<label>Email Address:</label><br><input type="text" name="email"><br>
+						<label>Password:</label><br><input type="text" name="pass"><br><br>
+						<input type="submit" value="Login">
+					</form>
+				</div>
 				
 			</div>
 			
 		</div>
 		
 	</div>
+
+	<script>
+		function showCustForm(){
+			document.getElementById("adminForm").style.display ="none";
+			document.getElementById("customerForm").style.setProperty("display", "block");
+			document.getElementById("adminCol").style.backgroundColor = "white";
+			document.getElementById("custCol").style.backgroundColor = "grey";
+		}
+
+		function showAdminForm(){
+			document.getElementById("customerForm").style.setProperty("display", "none");
+			document.getElementById("adminForm").style.setProperty("display", "block");
+			document.getElementById("custCol").style.backgroundColor = "white";
+			document.getElementById("adminCol").style.backgroundColor = "grey";
+		}
+	</script>
 
 
 
