@@ -425,7 +425,7 @@ function add_review($id, $productName, $comment, $userEmail){
 
 function drop_down_items(){
 	$connection = db_connect();
-	$query = "SELECT * FROM products";
+	$query = "SELECT * FROM products WHERE brand != 'removed'";
 	$results = mysqli_query($connection, $query);
 
 	echo '<select id="itemSelect" onChange="getItem()">';
@@ -441,7 +441,7 @@ function drop_down_items(){
 
 function drop_down_items_remove(){
 	$connection = db_connect();
-	$query = "SELECT * FROM products";
+	$query = "SELECT * FROM products WHERE brand != 'removed'";
 	$results = mysqli_query($connection, $query);
 
 	echo '<select id="itemSelectRemove" onChange="getItemRemove()">';
@@ -475,7 +475,7 @@ function get_item_info($name){
 
 function remove_item($name){
 	$connection = db_connect();
-	$query = "DELETE FROM products WHERE name='$name'";
+	$query = "UPDATE products SET brand='removed' WHERE name='$name' ";
 	$result = mysqli_query($connection, $query);
 	mysqli_close($connection);
 	header("Location: admin.html");
