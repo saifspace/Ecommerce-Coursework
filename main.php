@@ -481,5 +481,14 @@ function remove_item($name){
 	header("Location: admin.html");
 }
 
+function add_item($name, $imagePath, $description, $brand, $price){
+	$connection = db_connect();
+	$query = "INSERT INTO products (name, imagePath, description, brand, price)
+		VALUES ('$name', '$imagePath', '$description', '$brand', $price)";
+	$result = mysqli_query($connection, $query);
+	mysqli_close($connection);
+	header("Location: admin.html");
+}
+
 
 ?>
