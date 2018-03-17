@@ -295,6 +295,7 @@ function show_order_history() {
 		$results = mysqli_query($connection, $query);
 
 		if(!is_null($results)){
+			echo "<h1>Order History:</h1>";
 		echo "<table class='table' style=''>
 			 <tr>
 			 <th>Name</th>
