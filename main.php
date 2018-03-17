@@ -439,6 +439,22 @@ function drop_down_items(){
 
 }
 
+function drop_down_items_remove(){
+	$connection = db_connect();
+	$query = "SELECT * FROM products";
+	$results = mysqli_query($connection, $query);
+
+	echo '<select id="itemSelectRemove" onChange="getItemRemove()">';
+	echo "<option value='chooseItem'>Choose Item</option>";
+	while($row = mysqli_fetch_array($results)){
+		echo "<option value='$row[name]'>$row[name]</option>";
+	}
+
+	echo "</select>";
+	mysqli_close($connection);
+
+}
+
 function get_item_info($name){
 	$connection = db_connect();
 	$query = "SELECT * FROM products WHERE name='$name'";
@@ -455,6 +471,14 @@ function get_item_info($name){
 	echo $infoJSON;
 	mysqli_close($connection);
 
+}
+
+function remove_item($name){
+	$connection = db_connect();
+	$query = "DELETE FROM products WHERE name='$name'";
+	$result = mysqli_query($connection, $query);
+	mysqli_close($connection);
+	header("Location: admin.html");
 }
 
 

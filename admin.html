@@ -42,10 +42,12 @@
 
 	<div class="container-fluid">
 		<div class="row">
+
 			<div class="col-md-4" style="background-color: white; border: solid; border-color: black">
 				<h4>Edit Items</h4>
 
 				<?php drop_down_items(); ?>
+
 				<form action="./updateItemInfo.php" method="post">
 					<input id="name" type="hidden" name="name" required>
 					<br><label>Image Path:</label><br>
@@ -57,6 +59,17 @@
 					<label>Price:</label><br>
 					<input id="price" type="text" name="price" required><br><br>
 					<input type="submit" value="Update"/><br><br>
+				</form>
+			</div>
+
+			<div class="col-md-4" style="background-color: white; border: solid; border-color: black; height: 366px">
+				<h4>Remove Items</h4>
+
+				<?php drop_down_items_remove(); ?>
+				<form action="./removeItem.php" method="post">
+					<input id="nameRemove" type="hidden" name="name" required><br>
+					<input type="submit" value="Remove"/><br><br>
+				</form>
 			</div>
 			
 		</div>
@@ -75,6 +88,21 @@
 	        		document.getElementById("description").value = infoObj.description;
 	        		document.getElementById("brand").value = infoObj.brand;
 	        		document.getElementById("price").value = infoObj.price;
+	        	}
+	    	};
+
+			xmlhttp.open("GET", "getItemInfo.php?name=" +name, true);
+			xmlhttp.send();
+		}
+
+		function getItemRemove(){
+			var xmlhttp = new XMLHttpRequest();
+			var name = document.getElementById("itemSelectRemove").value;
+
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+	        		var infoObj = JSON.parse(this.responseText);
+	        		document.getElementById("nameRemove").value = infoObj.name;
 	        	}
 	    	};
 
