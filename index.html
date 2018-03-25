@@ -67,7 +67,55 @@
 			</div>
 
 		</div>
+
+
+
 	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4" style="border:solid; border-color: orange; background-color: orange; height: 300px">
+				<h4 style="text-align: center; color: black">Coming Soon</h4>
+				<p>
+					Welcome
+				</p>
+			</div>
+
+			<div class="col-md-4" style="padding-left: 0; padding-right: 0">
+				<div id="map" style="height:300px; width: 100%; border: solid; border-color: green;">
+
+				</div>	
+				
+			</div>
+
+
+			<div class="col-md-4" style="border:solid; border-color: yellow">
+				
+			</div>
+			
+		</div>
+		
+	</div>
+
+	<script>
+		function showMap() {
+			var myLocation = {lat: 51.587747, lng: 0.004055};
+			var map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 15,
+				center: myLocation
+			});
+			var myMarker = new google.maps.Marker({
+				position: myLocation,
+				map: map
+			});
+		}
+		
+	</script>
+
+	<script async defer src="https://maps.googleapis.com/maps/api/
+	js?key=AIzaSyBG3MRl5z1Rty11FpgIoiw0eY9dwFAn3GQ&callback=showMap"></script>>
+
+
 
 <!-- 	<div class="container-fluid" style="position: absolute; width: 100%; bottom: 0;">
 		
@@ -82,11 +130,11 @@
 
 	</div>  -->
 
-		<footer style="background-color: #1A1A2E;height: 100px; bottom:0; position: absolute; width: 100%; clear:both">
+<!-- 		<footer style="background-color: #1A1A2E;height: 100px; bottom:0; position: absolute; width: 100%; clear:both">
 		<p style="text-align: center; position: relative; top:40%; color: white"><b>Developer: </b>Mohammed Shaikh</p>
 		<p style="text-align: center; position: relative; top:40%; color: white">© 2018 Copyright:
 				<a href="index.html">OneCoin</a></p>
-	</footer>
+	</footer> -->
 
 	<script>
 		setInterval(function() {
