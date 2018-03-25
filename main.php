@@ -511,4 +511,27 @@ function user_logout(){
 	header("Location: index.html");
 }
 
+function get_matches($queryString){
+
+	if (strlen($queryString) > 0){
+		$connection = db_connect();
+		$query = "SELECT * FROM products WHERE name LIKE '%" . $queryString . "%'" . "AND brand != 'removed'";
+		$result = mysqli_query($connection, $query);
+		
+		//echo "<p>hello</p>";
+		$html = "";
+		while($row = mysqli_fetch_array($result)){ 
+			$html = $html . "<p onclick='fillSearch(this)'>$row[name]</p>";
+		}
+
+		echo $html;
+	} else{
+		echo "";
+	}
+
+
+	mysqli_close($connection);
+
+}
+
 ?>
