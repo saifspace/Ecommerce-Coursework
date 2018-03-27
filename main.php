@@ -534,4 +534,139 @@ function get_matches($queryString){
 
 }
 
+function search_item($productName){
+	session_start();
+	unset($_SESSION["search"]);
+	$connection = db_connect();
+	$query = "SELECT * FROM products WHERE name LIKE '%" . $productName . "%'" . "AND brand != 'removed'";
+	$result = mysqli_query($connection, $query);
+
+	if (mysqli_num_rows($result) > 0) {
+		session_start();
+		$_SESSION["search"] = $productName;
+	} else {
+		session_start();
+		$_SESSION["search"] = "empty";
+	}
+
+	header("Location: search.html");
+
+}
+
+function show_search(){
+	session_start();
+	if (isset($_SESSION["search"])) {
+
+		if ($_SESSION["search"] == "empty"){
+			echo "<h1>No Results</h1>";
+		} else {
+			$name = $_SESSION["search"];
+			$connection = db_connect();
+			$query = "SELECT * FROM products WHERE name LIKE '%" . $name . "%'" . "AND brand != 'removed'";
+			$result = mysqli_query($connection, $query);
+			show_products($result);
+
+		}
+	} else {
+		echo "<h1>No Results</h1>";
+	}
+}
+
+function show_products($results){
+	echo "<table class='table table-responsive' style='border-spacing:20px; border-collapse: separate;'>";
+	echo "<tr>";
+	$iterator = 0;
+
+	while($row = mysqli_fetch_array($results)){
+		if($iterator == 3){
+			echo "</tr>";
+			echo "
+					<tr>
+					<td align='center'>
+						<img src='$row[imagePath]' width='100' height='100'>
+						<p>$row[name]</p>
+						<p>£$row[price]</p>
+						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
+					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div>
+					<form> 
+					<input style='margin-top:5px; width:80px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
+					</form>";
+
+					$reviewQuery = "SELECT * FROM reviews WHERE productName='$row[name]'";
+					$reviewResults = mysqli_query($connection, $reviewQuery);
+					if(mysqli_num_rows($reviewResults) > 0){
+						$id = "review" . $row[id];
+						echo "
+						<button style='margin-top:5px; width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$id'>Reviews</button>
+						<div class='modal fade' id='$id' role='dialog'>
+						<div class='modal-dialog'> 
+						<div class='modal-content'>
+						<div class='modal-body'>
+							<table class='table table-responsive'>
+						";
+						while($row = mysqli_fetch_array($reviewResults)){
+							echo "<tr> <td>
+								<p>$row[comment]</p>
+								<h6>Review by: $row[email]<h6>
+								</td> </tr>
+
+							";
+							echo " </table> </div> </div> </div> </div>";
+
+						}
+					}
+
+			echo "</td>";
+			
+			$iterator = 0;
+		} else {
+
+		echo " 
+				<td align='center'>
+					<img src='$row[imagePath]' width='100' height='100'>
+					<p>$row[name]</p>
+					<p>£$row[price]</p>
+					<button style='width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
+					<div class='modal fade' id='$row[id]' role='dialog'>  <div class='modal-dialog'> <div class='modal-content'> <div class='modal-body'> $row[description] </div> </div> </div> </div> 
+					<form> 
+					<input style='margin-top:5px; width:80px;' class='btn btn-primary btn-sm' type='button' value='Buy' onclick='add($row[id])' /> 
+					</form>";
+
+					$reviewQuery = "SELECT * FROM reviews WHERE productName='$row[name]'";
+					$reviewResults = mysqli_query($connection, $reviewQuery);
+
+					if(mysqli_num_rows($reviewResults) > 0){
+						$id = "review" . $row[id];
+						echo "
+						<button style='margin-top:5px; width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$id'>Reviews</button>
+						<div class='modal fade' id='$id' role='dialog'>
+						<div class='modal-dialog'> 
+						<div class='modal-content'> 
+						<div class='modal-body'>
+							<table class='table table-responsive'>
+						";
+						while($row = mysqli_fetch_array($reviewResults)){
+							echo "<tr> <td>
+									<p>$row[comment]</p>
+									<h6>Review by: $row[email]<h6>
+							   </td> </tr>";
+						}
+						echo " </table> </div> </div> </div> </div>";
+
+					}
+
+
+		echo "</td>";
+			  
+		
+	}
+
+		$iterator++;
+	}
+	echo "</tr>";
+	echo "</table>";
+	mysqli_close($connection); 
+
+}
+
 ?>
