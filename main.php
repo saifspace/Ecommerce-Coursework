@@ -573,6 +573,7 @@ function show_search(){
 }
 
 function show_products($results){
+	$connection = db_connect();
 	echo "<table class='table table-responsive' style='border-spacing:20px; border-collapse: separate;'>";
 	echo "<tr>";
 	$iterator = 0;
