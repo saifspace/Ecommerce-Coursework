@@ -25,7 +25,7 @@ function register($email, $firstName, $lastName, $address, $pass) {
 	$query = "INSERT INTO `accounts` VALUES('$email', '$pass', '$firstName', '$lastName', '$address')";
 	mysqli_query($connection, $query);
 	mysqli_close($connection);
-	header("Location: index.php");
+	header("Location: index.html");
 }
 
 function login($email, $pass) {
@@ -143,6 +143,7 @@ function display_basket() {
     echo "</table>";
     mysqli_close($conn);
     
+
     
     echo "<br/><table class='table table-responsive'><tr>
          <th>Total</th>
@@ -150,9 +151,17 @@ function display_basket() {
          </tr>
          <tr>
          <td>&pound".number_format($total, 2, '.', '')."</td>
-         <td><form action='order.php' method='post'><input type ='submit' value='Order'/></form></td>
+         <td>
+         	<form action='order.php' method='post'>
+         		<input type='text' name='cardNo' placeholder='Card Number' required>
+         		<input type='text' name='cardName' placeholder='Name on Card' required>
+         		<input type='date' name='ExpDate' placeholder='Expiration Date' required>
+         		<input type ='submit' value='Order'/>
+         	</form>
+         </td>
          </tr>
          </table>";
+
 }
 
 
@@ -508,6 +517,15 @@ function user_logout(){
 	}
 
 	header("Location: index.html");
+}
+
+function show_user_logout(){
+	if(isset($_SESSION['user'])){
+		echo 
+		"<form action='./userLogout.php' method='post'>
+			<input type='submit' style='width: 100%; background-color: yellow; font-weight: 800;' value='LOGOUT'></input>
+		</form>";
+	}
 }
 
 function get_matches($queryString){
