@@ -338,7 +338,7 @@ function show_order_history() {
 		echo "<table class='table' style=''>
 			 <tr>
 			 <th>Name</th>
-			 <th>Image</th>
+			 <th>Date</th>
 			 <th>Quantity</th>
 			 <th>Price</th>
 			 <th>Review Status</th>
@@ -346,7 +346,7 @@ function show_order_history() {
 			 ";
 		while($row = mysqli_fetch_array($orders_results)){
 			$query = "
-			SELECT orderItems.quantity, orderItems.id, products.name, products.imagePath, products.price, orderItems.review, orders.email
+			SELECT orderItems.quantity, orderItems.id, products.name, products.imagePath, products.price, orderItems.review, orders.email, orders.transcDate
 			FROM orderItems
 			INNER JOIN products on products.id = orderItems.product_id INNER JOIN orders on orderItems.order_id = orders.id
 			WHERE orderItems.order_id = $row[id]
@@ -355,7 +355,7 @@ function show_order_history() {
 			while($row = mysqli_fetch_array($orderItems_results)){
 				echo "<tr>
 				<td>$row[name]</td>
-				<td>placeholder</td>
+				<td>$row[transcDate]</td>
 				<td>$row[quantity]</td>
 				<td>£$row[price]</td>";
 				if($row[review] == 0){
