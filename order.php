@@ -2,7 +2,7 @@
 
 include './main.php';
 
-order();
+order($_POST["cardNo"], $_POST["cardName"], $_POST["expDate"]);
 
 
 ?>

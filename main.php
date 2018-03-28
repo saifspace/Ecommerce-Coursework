@@ -98,7 +98,7 @@ function remove_from_basket($id) {
 	header("Location: basket.html");
 }
 
-function order(){
+function order($cardNo, $cardName, $expDate){
 
 	session_start();
     
@@ -113,7 +113,8 @@ function order(){
     }
 
     $connection = db_connect();
-    $query = "INSERT INTO orders (email) VALUES('$_SESSION[user]')";
+    $date = $expDate;
+    $query = "INSERT INTO orders (email, cardNo, cardName, transcDate) VALUES('$_SESSION[user]', '$cardNo', '$cardName', '$date')";
     mysqli_query($connection, $query);
     $oid = mysqli_insert_id($connection);
 
@@ -183,9 +184,9 @@ function display_basket() {
          <td>&pound".number_format($total, 2, '.', '')."</td>
          <td>
          	<form action='order.php' method='post'>
-         		<input type='text' name='cardNo' placeholder='Card Number' required>
+         		<input type='number' name='cardNo' placeholder='Card Number' required>
          		<input type='text' name='cardName' placeholder='Name on Card' required>
-         		<input type='date' name='ExpDate' placeholder='Expiration Date' required>
+         		<input type='date' name='expDate' placeholder='Expiration Date' required>
          		<input type ='submit' value='Order'/>
          	</form>
          </td>
