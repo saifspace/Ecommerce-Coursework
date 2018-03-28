@@ -98,6 +98,36 @@ function remove_from_basket($id) {
 	header("Location: basket.html");
 }
 
+function order(){
+
+	session_start();
+    
+    if(!isset($_SESSION["user"])){
+        
+        $message = "Please Login to place an order" ; 
+        echo 
+        "<script> 
+        	alert('$message');
+            window.location = 'login.html'; 
+        </script>";
+    }
+
+    $connection = db_connect();
+    $query = "INSERT INTO orders (email) VALUES('$_SESSION[user]')";
+    mysqli_query($connection, $query);
+    $oid = mysqli_insert_id($connection);
+
+    foreach($_SESSION['basket'] as $key=>$value) {
+    	if($value > 0) {
+    		$query = "INSERT INTO orderItems (order_id, product_id, quantity, review) VALUES($oid, $key, $value, 0)";
+    		mysqli_query($connection, $query);
+    	}
+    }
+    unset($_SESSION['basket']);
+    mysqli_close($connection);
+    header("Location: index.html");
+}
+
 function display_basket() {
 	    if(!isset($_SESSION['basket'])){
         
@@ -300,9 +330,9 @@ function show_order_history() {
 	if(isset($_SESSION['user'])) {
 		$connection = db_connect();
 		$query = "SELECT id FROM orders WHERE email='$user'";
-		$results = mysqli_query($connection, $query);
+		$orders_results = mysqli_query($connection, $query);
 
-		if(!is_null($results)){
+		if(!is_null($orders_results)){
 			echo "<h1>Order History:</h1>";
 		echo "<table class='table' style=''>
 			 <tr>
@@ -313,15 +343,15 @@ function show_order_history() {
 			 <th>Review Status</th>
 			 </tr>
 			 ";
-		while($row = mysqli_fetch_array($results)){
+		while($row = mysqli_fetch_array($orders_results)){
 			$query = "
 			SELECT orderItems.quantity, orderItems.id, products.name, products.imagePath, products.price, orderItems.review, orders.email
 			FROM orderItems
 			INNER JOIN products on products.id = orderItems.product_id INNER JOIN orders on orderItems.order_id = orders.id
 			WHERE orderItems.order_id = $row[id]
 			";
-			$results = mysqli_query($connection, $query);
-			while($row = mysqli_fetch_array($results)){
+			$orderItems_results = mysqli_query($connection, $query);
+			while($row = mysqli_fetch_array($orderItems_results)){
 				echo "<tr>
 				<td>$row[name]</td>
 				<td>placeholder</td>
