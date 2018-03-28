@@ -132,11 +132,11 @@ function order($cardNo, $cardName, $expDate){
 function display_basket() {
 	    if(!isset($_SESSION['basket'])){
         
-        echo'<h1><span class="glyphicon glyphicon-shopping-cart"></span> Your basket is empty</h1>';
+        echo"<h1><span class='glyphicon glyphicon-shopping-cart'></span> Your basket is empty</h1>";
         return;
     	}
   		if(count($_SESSION['basket']) == 0) {
-  			echo'<h1><span class="glyphicon glyphicon-shopping-cart"></span> Your basket is empty</h1>' ;
+  			echo"<h1><span class='glyphicon glyphicon-shopping-cart'></span> Your basket is empty</h1>" ;
         	return;
   		}
     
