@@ -196,6 +196,14 @@ function display_basket() {
 }
 
 
+function show_playstation_products(){
+	$connection = db_connect();
+	$query = "SELECT * FROM products WHERE brand='playstation'";
+	$results = mysqli_query($connection, $query);
+	show_products($results);
+	mysqli_close($connection);
+}
+
 function show_atari_products(){
 	$connection = db_connect();
 	$query = "SELECT * FROM products WHERE brand='atari'";
