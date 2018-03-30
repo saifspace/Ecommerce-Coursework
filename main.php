@@ -110,8 +110,9 @@ function order($cardNo, $cardName, $expDate){
     }else{
 
     $connection = db_connect();
-    $date = $expDate;
-    $query = "INSERT INTO orders (email, cardNo, cardName, transcDate) VALUES('$_SESSION[user]', '$cardNo', '$cardName', '$date')";
+    $date = date("Y-m-d");
+    $query = "INSERT INTO orders (email, cardNo, cardName, expDate, transcDate) VALUES('$_SESSION[user]', '$cardNo', '$cardName', 
+    								'$expDate','$date')";
     mysqli_query($connection, $query);
     $oid = mysqli_insert_id($connection);
 
