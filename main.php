@@ -109,22 +109,32 @@ function order($cardNo, $cardName, $expDate){
         </script>";
     }else{
 
-    $connection = db_connect();
-    $date = date("Y-m-d");
-    $query = "INSERT INTO orders (email, cardNo, cardName, expDate, transcDate) VALUES('$_SESSION[user]', '$cardNo', '$cardName', 
-    								'$expDate','$date')";
-    mysqli_query($connection, $query);
-    $oid = mysqli_insert_id($connection);
+	    $connection = db_connect();
+	    $date = date("Y-m-d");
+	    $query = "INSERT INTO orders (email, cardNo, cardName, expDate, transcDate) VALUES('$_SESSION[user]', '$cardNo', '$cardName', 
+	    								'$expDate','$date')";
+	    mysqli_query($connection, $query);
+	    $oid = mysqli_insert_id($connection);
 
-    foreach($_SESSION['basket'] as $key=>$value) {
-    	if($value > 0) {
-    		$query = "INSERT INTO orderItems (order_id, product_id, quantity, review) VALUES($oid, $key, $value, 0)";
-    		mysqli_query($connection, $query);
-    	}
-    }
-    unset($_SESSION['basket']);
-    mysqli_close($connection);
-    header("Location: index.html");
+	    foreach($_SESSION['basket'] as $key=>$value) {
+	    	if($value > 0) {
+	    		$query = "INSERT INTO orderItems (order_id, product_id, quantity, review) VALUES($oid, $key, $value, 0)";
+	    		mysqli_query($connection, $query);
+	    	}
+	    }
+
+	    $message = "Your Order Has Been Placed. Thank You!";
+
+	    unset($_SESSION['basket']);
+	    mysqli_close($connection);
+
+	   	echo "
+	    	<script>
+	    		alert('$message');
+	    		window.location = 'index.html';
+	    	</script>
+	    ";
+	    // header("Location: index.html");
 	}
 }
 
