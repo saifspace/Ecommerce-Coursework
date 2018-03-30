@@ -434,10 +434,10 @@ function show_user_details(){
 			<h1> Your Details: </h1>
 			<form action='./updateCustomerDetails.php' method='post'>
 				<label style='display:none;'>Email:</label><input style='display:none;' type='text' name='email' value='$row[email]'>
-				<label>First Name:</label><br><input type='text' name='firstName' value='$row[firstName]'><br>
-				<label>Last Name:</label><br><input type='text' name='lastName' value='$row[lastName]'><br>
-				<label>Address:</label><br><input type='text' name='address' value='$row[address]'><br>
-				<label>Password:</label><br><input type='text' name='pass' value='$row[pass]'><br><br>
+				<label>First Name:</label><br><input type='text' name='firstName' value='$row[firstName]' autocomplete='off' required><br>
+				<label>Last Name:</label><br><input type='text' name='lastName' value='$row[lastName]' autocomplete='off' required><br>
+				<label>Address:</label><br><input type='text' name='address' value='$row[address]' autocomplete='off' required><br>
+				<label>Password:</label><br><input type='text' name='pass' value='$row[pass]' autocomplete='off' required><br><br>
 				<input type='submit' value='Save Changes'/>
 			 </form>
 		";
