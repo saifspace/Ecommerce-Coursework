@@ -238,7 +238,7 @@ function show_atari_products(){
 			echo "
 					<tr>
 					<td align='center'>
-						<img src='$row[imagePath]' width='100' height='100'>
+						<img src='$row[imagePath]' width='125' height='125'>
 						<p>$row[name]</p>
 						<p>£$row[price]</p>
 						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
@@ -277,7 +277,7 @@ function show_atari_products(){
 
 		echo " 
 				<td align='center'>
-					<img src='$row[imagePath]' width='100' height='100'>
+					<img src='$row[imagePath]' width='125' height='125'>
 					<p>$row[name]</p>
 					<p>£$row[price]</p>
 					<button style='width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
@@ -732,7 +732,7 @@ function show_products($results){
 			echo "
 					<tr>
 					<td align='center'>
-						<img src='$row[imagePath]' width='100' height='100'>
+						<img src='$row[imagePath]' width='125' height='125'>
 						<p>$row[name]</p>
 						<p>£$row[price]</p>
 						<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
@@ -772,7 +772,7 @@ function show_products($results){
 
 		echo " 
 				<td align='center'>
-					<img src='$row[imagePath]' width='100' height='100'>
+					<img src='$row[imagePath]' width='125' height='125'>
 					<p>$row[name]</p>
 					<p>£$row[price]</p>
 					<button style='width:80px;' type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#$row[id]'>Description</button>
