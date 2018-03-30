@@ -64,6 +64,9 @@
 #item-4:hover {
 	background-color: orange;
 }
+#item-5:hover {
+	background-color: #e5f441;
+}
 
 .slide-images {
 	display: none;
