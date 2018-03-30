@@ -798,7 +798,6 @@ function show_products($results){
 							echo "<tr> <td>
 									<p>$row[comment]</p>
 									<h6>Review by: $row[email]</h6>
-									<h6>2</h6>
 							   </td> </tr>";
 						}
 						echo " </table> </div> </div> </div> </div>";
