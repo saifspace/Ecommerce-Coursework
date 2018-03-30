@@ -134,7 +134,6 @@ function order($cardNo, $cardName, $expDate){
 	    		window.location = 'index.html';
 	    	</script>
 	    ";
-	    // header("Location: index.html");
 	}
 }
 
