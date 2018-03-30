@@ -14,7 +14,6 @@ function db_connect() {
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	// echo "Connected successfully";
 
 	return $connection;
 
@@ -78,8 +77,6 @@ function add_to_basket($id) {
     }else{
         $_SESSION['basket'] = array($id => 1);                                                                
     }
-    //header("Location: basket.php");
-
 }
 
 function remove_from_basket($id) {
