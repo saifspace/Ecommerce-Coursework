@@ -546,6 +546,30 @@ function add_item($name, $imagePath, $description, $brand, $price){
 	header("Location: admin.html");
 }
 
+function show_edit_items(){
+	if(isset($_SESSION['admin'])){
+		echo "<h4>Edit Item</h4>" ;
+		echo drop_down_items() . "
+
+				<form action='./updateItemInfo.php' method='post'>
+					<input id='name' type='hidden' name='name' required>
+					<br><label>Image Path:</label><br>
+					<input id='imagePath' type='text' name='imagePath' required><br>
+					<label>Description:</label><br>
+					<input id='description' type='text' name='description' required><br>
+					<label>Brand:</label><br>
+					<input id='brand' type='text' name='brand' required><br>
+					<label>Price:</label><br>
+					<input id='price' type='text' name='price' required><br><br>
+					<input type='submit' value='Update'/><br><br>
+				</form>
+
+
+		";
+	}
+}
+
+
 function admin_logout(){
 	session_start();
 
