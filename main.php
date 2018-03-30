@@ -107,7 +107,7 @@ function order($cardNo, $cardName, $expDate){
         	alert('$message');
             window.location = 'login.html'; 
         </script>";
-    }
+    }else{
 
     $connection = db_connect();
     $date = $expDate;
@@ -124,6 +124,7 @@ function order($cardNo, $cardName, $expDate){
     unset($_SESSION['basket']);
     mysqli_close($connection);
     header("Location: index.html");
+	}
 }
 
 function display_basket() {
