@@ -247,7 +247,7 @@ function show_atari_products(){
 						while($row = mysqli_fetch_array($reviewResults)){
 							echo "<tr> <td>
 								<p>$row[comment]</p>
-								<h6>Review by: $row[email]<h6>
+								<h6>Review by: $row[email]</h6>
 								</td> </tr>
 
 							";
@@ -287,7 +287,7 @@ function show_atari_products(){
 						while($row = mysqli_fetch_array($reviewResults)){
 							echo "<tr> <td>
 									<p>$row[comment]</p>
-									<h6>Review by: $row[email]<h6>
+									<h6>Review by: $row[email]</h6>
 							   </td> </tr>";
 						}
 						echo " </table> </div> </div> </div> </div>";
@@ -741,7 +741,7 @@ function show_products($results){
 						while($row = mysqli_fetch_array($reviewResults)){
 							echo "<tr> <td>
 								<p>$row[comment]</p>
-								<h6>Review by: $row[email]<h6>
+								<h6>Review by: $row[email]</h6>
 								</td> </tr>
 
 							";
@@ -782,7 +782,7 @@ function show_products($results){
 						while($row = mysqli_fetch_array($reviewResults)){
 							echo "<tr> <td>
 									<p>$row[comment]</p>
-									<h6>Review by: $row[email]<h6>
+									<h6>Review by: $row[email]</h6>
 									<h6>2</h6>
 							   </td> </tr>";
 						}
