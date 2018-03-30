@@ -43,60 +43,20 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-md-4" style="background-color: white; border: solid; border-color: black; height: 75vh;">
-<!-- 				<h4>Edit Item</h4>
-
-				<?php drop_down_items(); ?>
-
-				<form action="./updateItemInfo.php" method="post">
-					<input id="name" type="hidden" name="name" required>
-					<br><label>Image Path:</label><br>
-					<input id="imagePath" type="text" name="imagePath" required><br>
-					<label>Description:</label><br>
-					<input id="description" type="text" name="description" required><br>
-					<label>Brand:</label><br>
-					<input id= "brand" type="text" name="brand" required><br>
-					<label>Price:</label><br>
-					<input id="price" type="text" name="price" required><br><br>
-					<input type="submit" value="Update"/><br><br>
-				</form> -->
+			<div class="col-md-4" style="background-color: white; border: solid; border-color: black; height: 75vh; overflow-y: scroll;">
 				<?php show_edit_items(); ?>
 			</div>
 			
-			<div class="col-md-4" style="background-color: white; border: solid; border-color: black; height: 75vh;">
-				<h4>Add New Item</h4>
-
-				<form action="./addItem.php" method="post">
-					
-					<label>Name:</label><br>
-					<input type="text" name="name" required><br>
-					<label>Image Path:</label><br>
-					<input type="text" name="imagePath" required><br>
-					<label>Description:</label><br>
-					<input type="text" name="description" required><br>
-					<label>Brand:</label><br>
-					<input type="text" name="brand" required><br>
-					<label>Price:</label><br>
-					<input type="text" name="price" required><br><br>
-					
-					<input type="submit" value="Add"/><br><br>
-				</form>
+			<div class="col-md-4" style="background-color: white; border: solid; border-color: black; height: 75vh; overflow-y: scroll;">
+				<?php show_add_item(); ?>
 			</div>
 
-			<div class="col-md-2" style="background-color: white; border: solid; border-color: black; height: 75vh;">
-				<h4>Remove Item</h4>
-
-				<?php drop_down_items_remove(); ?>
-				<form action="./removeItem.php" method="post">
-					<input id="nameRemove" type="hidden" name="name" required><br>
-					<input type="submit" value="Remove"/><br><br>
-				</form>
+			<div class="col-md-2" style="background-color: white; border: solid; border-color: black; height: 75vh; overflow-y: scroll;">
+				<?php show_remove_items(); ?>
 			</div>
 
 			<div class="col-md-2" style="border-style: solid; border-color: navy; background-color: yellow;">
-				<form action="./adminLogout.php" method="post">
-					<input type="submit" style="width: 100%; background-color: yellow; font-weight: 800;" value="LOGOUT"></input>
-				</form>
+				<?php show_admin_logout(); ?>
 			</div>
 
 		</div>

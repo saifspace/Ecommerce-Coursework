@@ -569,6 +569,54 @@ function show_edit_items(){
 	}
 }
 
+function show_add_item(){
+	if(isset($_SESSION['admin'])){
+		echo " 
+				<h4>Add New Item</h4>
+
+				<form action='./addItem.php' method='post'>
+					
+					<label>Name:</label><br>
+					<input type='text' name='name' required><br>
+					<label>Image Path:</label><br>
+					<input type='text' name='imagePath' required><br>
+					<label>Description:</label><br>
+					<input type='text' name='description' required><br>
+					<label>Brand:</label><br>
+					<input type='text' name='brand' required><br>
+					<label>Price:</label><br>
+					<input type='text' name='price' required><br><br>
+					
+					<input type='submit' value='Add'/><br><br>
+				</form>
+		";
+	}else{
+		echo "<h1>Admin not logged-in.</h1>";
+	}
+}
+
+function show_remove_items(){
+	if(isset($_SESSION['admin'])){
+		echo "<h4>Remove Item</h4>";
+		echo drop_down_items_remove() . "
+				<form action='./removeItem.php' method='post'>
+					<input id='nameRemove' type='hidden' name='name' required><br>
+					<input type='submit' value='Remove'/><br><br>
+				</form>
+		";
+	}
+}
+
+function show_admin_logout(){
+	if(isset($_SESSION['admin'])){
+		echo " 
+				<form action='./adminLogout.php' method='post'>
+					<input type='submit' style='width: 100%; background-color: yellow; font-weight: 800;' value='LOGOUT'></input>
+				</form>
+
+		";
+	}
+}
 
 function admin_logout(){
 	session_start();
