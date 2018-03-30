@@ -22,7 +22,11 @@ function db_connect() {
 function register($email, $firstName, $lastName, $address, $pass) {
 	$connection = db_connect();
 	$query = "INSERT INTO `accounts` VALUES('$email', '$pass', '$firstName', '$lastName', '$address')";
-	mysqli_query($connection, $query);
+	$result = mysqli_query($connection, $query);
+	if($result){
+		session_start();
+		$_SESSION['user'] = $email;
+	}
 	mysqli_close($connection);
 	header("Location: index.html");
 }
