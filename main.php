@@ -197,7 +197,7 @@ function display_basket() {
          <td>&pound".number_format($total, 2, '.', '')."</td>
          <td>
          	<form action='order.php' method='post'>
-         		<input type='number' name='cardNo' placeholder='Card Number' min='0' required>
+         		<input type='number' name='cardNo' placeholder='Card Number' min='0' onkeyup='cardValidation(this)' required>
          		<input type='text' name='cardName' placeholder='Name on Card' required>
          		<input type='date' name='expDate' placeholder='Expiration Date' min='$date' required>
          		<input type ='submit' value='Order'/>

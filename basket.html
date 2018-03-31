@@ -103,6 +103,18 @@
 			document.getElementById("suggestions").innerHTML= "";
 			document.getElementById("suggestions").style.border= "0px";
 		}
+
+		function cardValidation(number){
+
+			var numberLength = number.value.length;
+
+			if (numberLength >= 13 && numberLength <=16 ){
+				number.setCustomValidity("");
+			}else{
+				number.setCustomValidity("13 to 16 Digit Card Number");
+			}
+
+		}
 	</script>           
 
 </body>
