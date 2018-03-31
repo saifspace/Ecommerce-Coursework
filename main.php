@@ -187,7 +187,8 @@ function display_basket() {
     mysqli_close($conn);
     
 
-    
+    $date = date("Y-m-d");
+
     echo "<br/><table class='table table-responsive'><tr>
          <th>Total</th>
          <th>Order</th>
@@ -196,9 +197,9 @@ function display_basket() {
          <td>&pound".number_format($total, 2, '.', '')."</td>
          <td>
          	<form action='order.php' method='post'>
-         		<input type='number' name='cardNo' placeholder='Card Number' required>
+         		<input type='number' name='cardNo' placeholder='Card Number' min='0' required>
          		<input type='text' name='cardName' placeholder='Name on Card' required>
-         		<input type='date' name='expDate' placeholder='Expiration Date' required>
+         		<input type='date' name='expDate' placeholder='Expiration Date' min='$date' required>
          		<input type ='submit' value='Order'/>
          	</form>
          </td>
