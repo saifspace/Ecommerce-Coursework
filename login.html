@@ -44,7 +44,8 @@
 				
 				<div>
 					<form action="./register.php" method="post">
-						<label>Email Address:</label><br><input type="text" name="email" autocomplete="off" required><br>
+						<label>Email Address:</label><br><input type="email" name="email" autocomplete="off" 
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
 						<label>First Name:</label><br><input type="text" name="firstName" autocomplete="off" required><br>
 						<label>Last Name:</label><br><input type="text" name="lastName" autocomplete="off" required><br>
 						<label>Address:</label><br><input type="text" name="address" autocomplete="off" required><br>
@@ -77,7 +78,8 @@
 				<div id="customerForm" ">
 				<br><p>Returning Customer:</p>
 				<form action="./login.php" method="post">
-					<label>Email Address:</label><br><input type="text" name="email" autocomplete="off" required><br>
+					<label>Email Address:</label><br><input type="email" name="email" autocomplete="off" 
+						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
 					<label>Password:</label><br><input type="password" name="pass" required><br><br>
 					<input type="submit" value="Login">
 				</form>
@@ -86,7 +88,8 @@
 				<div id="adminForm" style="display: none" >
 					<br><p>Admin Login:</p>
 					<form action="./admin.php" method="post">
-						<label>Email Address:</label><br><input type="text" name="email" autocomplete="off" required><br>
+						<label>Email Address:</label><br><input type="email" name="email" autocomplete="off" 
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
 						<label>Password:</label><br><input type="password" name="pass" required><br><br>
 						<input type="submit" value="Login">
 					</form>
